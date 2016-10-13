@@ -15,7 +15,9 @@ import net.bhpachulski.tddcriteriaserver.model.FileType;
 import net.bhpachulski.tddcriteriaserver.model.Student;
 import net.bhpachulski.tddcriteriaserver.model.StudentFile;
 import net.bhpachulski.tddcriteriaserver.model.TDDStage;
+import net.bhpachulski.tddcriteriaserver.util.HibernateUtil;
 import org.glassfish.jersey.media.multipart.FormDataParam;
+import org.hibernate.SessionFactory;
 
 /**
  *
@@ -67,5 +69,15 @@ public class TDDCriteriaService {
     @Produces(MediaType.APPLICATION_JSON)
     public List<StudentFile> getAllFiles () throws SQLException, ParseException {
         return dao.getAllFiles();
+    }
+    
+    @GET
+    @Path("/hibernate")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String startHibernate () {
+        
+        SessionFactory sf = HibernateUtil.getSessionFactory();
+        
+        return sf.getCurrentSession().toString();
     }
 }

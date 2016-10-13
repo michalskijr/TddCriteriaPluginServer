@@ -7,8 +7,11 @@ import java.util.logging.Logger;
 
 import javax.ws.rs.core.Application;
 import net.bhpachulski.tddcriteriaserver.service.impl.TDDCriteriaService;
+import net.bhpachulski.tddcriteriaserver.util.HibernateUtil;
 import org.glassfish.jersey.filter.LoggingFilter;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 /**
  *
