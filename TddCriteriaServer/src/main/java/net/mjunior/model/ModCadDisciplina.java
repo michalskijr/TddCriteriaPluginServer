@@ -22,14 +22,18 @@ public class ModCadDisciplina implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idDisciplina;
+    
     @Column(name = "nomeDisciplina", nullable = true)
     private String nomeDisciplina;
+    
     @Column(name = "ano", nullable = true)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date ano;
+    
     @Column(name = "situacao", nullable = true)
     private String situacao;
-    @ManyToOne(optional = true)
+    
+    @ManyToOne//(optional = true)
     private ModCadSemestre semestre;
 
     public int getIdDisciplina() {

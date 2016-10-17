@@ -22,15 +22,19 @@ public class ModCadArquivo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idArquivo;
+    
     @Column(name = "nomeArquivo", nullable = true)
     private String nomeArquivo;
-    @ManyToOne(optional = true)
+    
+    @ManyToOne//(optional = true)
     private ModCadExecucao execucao;
-    @ManyToOne(optional = true)
+    
+    @ManyToOne//(optional = true)
     private ModCadTipoArquivo tipoArquivo;
-    @OneToMany(mappedBy = "tipoArquivo")
+    
+    @OneToMany(mappedBy = "arquivo")
     private List<ModCadExecEstatistica> execucoes;
-
+    
     public List<ModCadExecEstatistica> getExecucoes() {
         return execucoes;
     }

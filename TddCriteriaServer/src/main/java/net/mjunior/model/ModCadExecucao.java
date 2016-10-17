@@ -8,9 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -23,20 +25,25 @@ public class ModCadExecucao implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idExecucao;
+    
     @Column(name = "dataHora", nullable = true)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataHora;
-    @ManyToOne(optional = true)
+    
+    @ManyToOne//(optional = true)
     private ModCadEstagioTdd estagioTdd;
-    @OneToMany(mappedBy = "execucao")
-    private List<ModCadExecProjeto> projetosExecutados;
-
-    public List<ModCadExecProjeto> getProjetosExecutados() {
-        return projetosExecutados;
-    }
-
-    public void setProjetosExecutados(List<ModCadExecProjeto> projetosExecutados) {
-        this.projetosExecutados = projetosExecutados;
-    }
+    
+    //relacionamento n para n com Metodo
+//    @ManyToMany(mappedBy = "execucaoProjeto")
+//    private List<ModCadMetodo> projetosExecutados;
+//
+//    public List<ModCadMetodo> getProjetosExecutados() {
+//        return projetosExecutados;
+//    }
+//
+//    public void setProjetosExecutados(List<ModCadMetodo> projetosExecutados) {
+//        this.projetosExecutados = projetosExecutados;
+//    }
     
     public int getIdExecucao() {
         return idExecucao;

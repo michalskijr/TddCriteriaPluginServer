@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Thu Oct 13 19:45:26 BRT 2016:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-0157-c038-beb2-00000fda1c30 
-on database directory /Users/bhpachulski/Documents/GIT/tddServerJr/TddCriteriaPluginServer/TddCriteriaServer/tddCriteriaDB/db with class loader WebAppClassLoader=TDDCriteriaServer@60bbacfc 
-Loaded from file:/Users/bhpachulski/.m2/repository/org/apache/derby/derby/10.11.1.1/derby-10.11.1.1.jar
+Mon Oct 17 21:24:43 BRST 2016:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-0157-d4f6-22d4-00000f6f0d68 
+on database directory E:\Documentos\OneDrive\Java\TddCriteriaPluginServer\TddCriteriaServer\tddCriteriaDB\db with class loader WebAppClassLoader=TDDCriteriaServer@dc4a691 
+Loaded from file:/C:/Users/mjuni/.m2/repository/org/apache/derby/derby/10.11.1.1/derby-10.11.1.1.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_101-b13
-user.dir=/Users/bhpachulski/Documents/GIT/tddServerJr/TddCriteriaPluginServer/TddCriteriaServer
-os.name=Mac OS X
-os.arch=x86_64
-os.version=10.11.6
+java.runtime.version=1.8.0_73-b02
+user.dir=E:\Documentos\OneDrive\Java\TddCriteriaPluginServer\TddCriteriaServer
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''

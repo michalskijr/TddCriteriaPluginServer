@@ -19,6 +19,7 @@ public class ModCadTipoArquivo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idTipoArquivo;
+    
     @Column(name = "dsTipoArquivo", nullable = true)
     private String dsTipoArquivo;
 

@@ -10,13 +10,16 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import net.bhpachulski.tddcriteriaserver.dao.DaoGeneric;
 import net.bhpachulski.tddcriteriaserver.dao.TddCriteriaDAO;
 import net.bhpachulski.tddcriteriaserver.model.FileType;
 import net.bhpachulski.tddcriteriaserver.model.Student;
 import net.bhpachulski.tddcriteriaserver.model.StudentFile;
 import net.bhpachulski.tddcriteriaserver.model.TDDStage;
 import net.bhpachulski.tddcriteriaserver.util.HibernateUtil;
+import net.mjunior.model.ModCadSemestre;
 import org.glassfish.jersey.media.multipart.FormDataParam;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 /**
@@ -79,5 +82,20 @@ public class TDDCriteriaService {
         SessionFactory sf = HibernateUtil.getSessionFactory();
         
         return sf.getCurrentSession().toString();
+    }
+    
+    @GET
+    @Path("/insert")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<ModCadSemestre> insert() throws SQLException {
+        
+        ModCadSemestre semestre = new ModCadSemestre();
+        DaoGeneric daoSemestre = new DaoGeneric();
+        
+        semestre.setDescSemestre("1º Semestre");
+        
+        daoSemestre.salvar(semestre);
+        
+        return daoSemestre.consultaGeral(semestre);
     }
 }

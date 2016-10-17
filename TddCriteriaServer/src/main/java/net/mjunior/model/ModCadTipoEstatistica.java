@@ -22,10 +22,14 @@ public class ModCadTipoEstatistica implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idTipoEstatistica;
+    
     @Column(name = "dsTipoEstatistica", nullable = true)
     private String dsTipoEstatistica;
-    @ManyToOne(optional = true)
+    
+    @ManyToOne//(optional = true)
     private ModCadTipoArquivo tipoArquivo;
+    
+    //relacionamento n para n com Arquivo
     @OneToMany(mappedBy = "tipoEstatistica")
     private List<ModCadExecEstatistica> execucoes;
 

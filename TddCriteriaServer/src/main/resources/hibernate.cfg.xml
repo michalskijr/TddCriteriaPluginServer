@@ -14,6 +14,7 @@
     <mapping class="net.mjunior.model.ModCadAluno"/>
     <mapping class="net.mjunior.model.ModCadArquivo"/>
     <mapping class="net.mjunior.model.ModCadClasse"/>
+    <mapping class="net.mjunior.model.ModCadProjeto"/>
     <mapping class="net.mjunior.model.ModCadDisciplina"/>
     <mapping class="net.mjunior.model.ModCadEstagioTdd"/>
     <mapping class="net.mjunior.model.ModCadExecEstatistica"/>

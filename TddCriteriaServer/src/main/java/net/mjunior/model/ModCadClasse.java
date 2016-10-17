@@ -20,11 +20,14 @@ public class ModCadClasse implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idClasse;
+    
     @Column(name = "descricao")
     private String dsClasse;
-    @ManyToOne(optional = true)
+    
+    @ManyToOne//(optional = true)
     private ModCadProjeto projeto;
-    @ManyToOne(optional = true)
+    
+    @ManyToOne//(optional = true)
     private ModCadTipoClasse tipoClasse;
 
     public int getIdClasse() {

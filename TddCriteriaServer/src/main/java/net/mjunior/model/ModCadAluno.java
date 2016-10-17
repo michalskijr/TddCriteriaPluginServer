@@ -20,13 +20,17 @@ public class ModCadAluno implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idAluno;
+    
     @Column(name = "nomeAluno", nullable = true)
     private String nomeAluno;
+    
     @Column(name = "macAddress", nullable = true)
     private String macAddress;
+    
     @Column(name = "situacao", nullable = true)
     private String situacao;
-    @ManyToOne(optional = true)
+    
+    @ManyToOne//(optional = true)
     private ModCadDisciplina disciplina;
 
     public int getIdAluno() {

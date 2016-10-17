@@ -8,8 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -22,18 +24,23 @@ public class ModCadProjeto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idProjeto;
+    
     @Column(name = "dataInicio", nullable = true)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataInicio;
+    
     @Column(name = "nomeProjeto", nullable = true)
     private String nomeProjeto;
+    
     @Column(name = "situacao", nullable = true)
     private String situacao;
-    @ManyToOne(optional = true)
+    
+    @ManyToOne//(optional = true)
     private ModCadProfessor professor;
-    @ManyToOne(optional = true)
+    
+    @ManyToOne//(optional = true)
     private ModCadAluno aluno;
-
+    
     public int getIdProjeto() {
         return idProjeto;
     }
