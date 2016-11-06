@@ -19,6 +19,7 @@ public class ModCadEstagioTdd implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idEstagioTdd;
+    
     @Column(name = "descricao", nullable = true)
     private String dsEstagioTdd;
 

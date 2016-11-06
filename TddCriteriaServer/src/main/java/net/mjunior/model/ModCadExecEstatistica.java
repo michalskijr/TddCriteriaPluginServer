@@ -4,8 +4,8 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 /**
@@ -18,10 +18,14 @@ import javax.persistence.Table;
 public class ModCadExecEstatistica implements Serializable {
     
     @Id
-    private int idArquivo;
+    @ManyToOne
+    @JoinColumn(name = "idArqivo")
+    private ModCadArquivo arquivo;
     
     @Id
-    private int idTipoEstatistica;
+    @ManyToOne
+    @JoinColumn(name = "idTipoEstatistica")
+    private ModCadTipoEstatistica tipoEstatistica;
     
     @Column(name = "missed")
     private int missed;
@@ -32,28 +36,20 @@ public class ModCadExecEstatistica implements Serializable {
     @Column(name = "failed")
     private Boolean failed;
 
-    @ManyToOne
-    @PrimaryKeyJoinColumn(name = "idArquivo", referencedColumnName = "idArquivo")
-    private ModCadArquivo arquivo;
-    
-    @ManyToOne
-    @PrimaryKeyJoinColumn(name = "idTipoEstatistica", referencedColumnName = "idTipoEstatistica")
-    private ModCadTipoEstatistica tipoEstatistica;
-
-    public int getIdArquivo() {
-        return idArquivo;
+    public ModCadArquivo getArquivo() {
+        return arquivo;
     }
 
-    public void setIdArquivo(int idArquivo) {
-        this.idArquivo = idArquivo;
+    public void setArquivo(ModCadArquivo arquivo) {
+        this.arquivo = arquivo;
     }
 
-    public int getIdTipoEstatistica() {
-        return idTipoEstatistica;
+    public ModCadTipoEstatistica getTipoEstatistica() {
+        return tipoEstatistica;
     }
 
-    public void setIdTipoEstatistica(int idTipoEstatistica) {
-        this.idTipoEstatistica = idTipoEstatistica;
+    public void setTipoEstatistica(ModCadTipoEstatistica tipoEstatistica) {
+        this.tipoEstatistica = tipoEstatistica;
     }
 
     public int getMissed() {
@@ -78,21 +74,5 @@ public class ModCadExecEstatistica implements Serializable {
 
     public void setFailed(Boolean failed) {
         this.failed = failed;
-    }
-
-    public ModCadArquivo getArquivo() {
-        return arquivo;
-    }
-
-    public void setArquivo(ModCadArquivo arquivo) {
-        this.arquivo = arquivo;
-    }
-
-    public ModCadTipoEstatistica getTipoEstatistica() {
-        return tipoEstatistica;
-    }
-
-    public void setTipoEstatistica(ModCadTipoEstatistica tipoEstatistica) {
-        this.tipoEstatistica = tipoEstatistica;
     }
 }

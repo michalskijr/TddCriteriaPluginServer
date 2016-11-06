@@ -19,12 +19,16 @@ public class ModCadProfessor implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idProfessor;
+    
     @Column(name = "nomeProfessor", nullable = true)
     private String nomeProfessor;
+    
     @Column(name = "login", nullable = true)
     private String login;
+    
     @Column(name = "senha", nullable = true)
     private String senha;
+    
     @Column(name = "email", nullable = true)
     private String email;
 

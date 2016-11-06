@@ -1,14 +1,14 @@
 package net.mjunior.model;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -26,22 +26,13 @@ public class ModCadArquivo implements Serializable {
     @Column(name = "nomeArquivo", nullable = true)
     private String nomeArquivo;
     
-    @ManyToOne//(optional = true)
-    private ModCadExecucao execucao;
+    @Column
+    @Lob
+    private byte[] arquivoXML;
     
     @ManyToOne//(optional = true)
+    @JoinColumn(name = "idTipoArquivo")
     private ModCadTipoArquivo tipoArquivo;
-    
-    @OneToMany(mappedBy = "arquivo")
-    private List<ModCadExecEstatistica> execucoes;
-    
-    public List<ModCadExecEstatistica> getExecucoes() {
-        return execucoes;
-    }
-
-    public void setExecucoes(List<ModCadExecEstatistica> execucoes) {
-        this.execucoes = execucoes;
-    }
     
     public int getIdArquivo() {
         return idArquivo;
@@ -59,12 +50,12 @@ public class ModCadArquivo implements Serializable {
         this.nomeArquivo = nomeArquivo;
     }
 
-    public ModCadExecucao getExecucao() {
-        return execucao;
+    public byte[] getArquivoXML() {
+        return arquivoXML;
     }
 
-    public void setExecucao(ModCadExecucao execucao) {
-        this.execucao = execucao;
+    public void setArquivoXML(byte[] arquivoXML) {
+        this.arquivoXML = arquivoXML;
     }
 
     public ModCadTipoArquivo getTipoArquivo() {

@@ -2,29 +2,33 @@
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
+    <!--Conexao com o banco de dados Derby
     <property name="hibernate.dialect">org.hibernate.dialect.DerbyTenSevenDialect</property>
     <property name="hibernate.connection.driver_class">org.apache.derby.jdbc.EmbeddedDriver</property>
-    <property name="hibernate.connection.url">jdbc:derby:tddCriteriaDB/db;create=true</property>
-<!--    <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">root</property>-->
-    <property name="hibernate.current_session_context_class">thread</property>
-    <property name="hibernate.hbm2ddl.auto">create-drop</property>
+    <property name="hibernate.connection.url">jdbc:derby:tddCriteriaDB/db;create=true</property>-->
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/tdd?useTimezone=true&amp;serverTimezone=UTC</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">root</property>
     <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.hbm2ddl.auto">create-drop</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
+    <property name="hibernate.current_session_context_class">thread</property>
     <mapping class="net.mjunior.model.ModCadAluno"/>
     <mapping class="net.mjunior.model.ModCadArquivo"/>
     <mapping class="net.mjunior.model.ModCadClasse"/>
-    <mapping class="net.mjunior.model.ModCadProjeto"/>
     <mapping class="net.mjunior.model.ModCadDisciplina"/>
     <mapping class="net.mjunior.model.ModCadEstagioTdd"/>
     <mapping class="net.mjunior.model.ModCadExecEstatistica"/>
     <mapping class="net.mjunior.model.ModCadExecProjeto"/>
-    <mapping class="net.mjunior.model.ModCadExecucao"/>
     <mapping class="net.mjunior.model.ModCadMetodo"/>
     <mapping class="net.mjunior.model.ModCadProfessor"/>
+    <mapping class="net.mjunior.model.ModCadProjeto"/>
     <mapping class="net.mjunior.model.ModCadSemestre"/>
     <mapping class="net.mjunior.model.ModCadTipoArquivo"/>
     <mapping class="net.mjunior.model.ModCadTipoClasse"/>
     <mapping class="net.mjunior.model.ModCadTipoEstatistica"/>
+    <mapping class="net.mjunior.model.SaveFile"/>
   </session-factory>
 </hibernate-configuration>

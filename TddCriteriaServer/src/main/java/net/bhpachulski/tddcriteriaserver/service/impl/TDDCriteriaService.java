@@ -1,6 +1,8 @@
 package net.bhpachulski.tddcriteriaserver.service.impl;
 
-import java.io.InputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
@@ -10,16 +12,14 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import net.bhpachulski.tddcriteriaserver.dao.DaoArquivo;
 import net.bhpachulski.tddcriteriaserver.dao.DaoGeneric;
-import net.bhpachulski.tddcriteriaserver.dao.TddCriteriaDAO;
-import net.bhpachulski.tddcriteriaserver.model.FileType;
-import net.bhpachulski.tddcriteriaserver.model.Student;
-import net.bhpachulski.tddcriteriaserver.model.StudentFile;
-import net.bhpachulski.tddcriteriaserver.model.TDDStage;
 import net.bhpachulski.tddcriteriaserver.util.HibernateUtil;
+import net.mjunior.model.ModCadAluno;
+import net.mjunior.model.ModCadArquivo;
 import net.mjunior.model.ModCadSemestre;
+import net.mjunior.model.SaveFile;
 import org.glassfish.jersey.media.multipart.FormDataParam;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 /**
@@ -29,59 +29,102 @@ import org.hibernate.SessionFactory;
 @Path("/tddCriteriaService")
 public class TDDCriteriaService {
     
-    private TddCriteriaDAO dao;
+    private DaoGeneric dao;
 
     public TDDCriteriaService() throws SQLException {
-        dao = new TddCriteriaDAO();
+        dao = new DaoGeneric();
         dao.init();
     }
     
-    @POST
-    @Path("/addStudent")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Student insertAluno(Student student) throws SQLException {
-        return dao.insertOrGetExistingStudent(student);
-    }
+//    @POST
+//    @Path("/addStudent")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    public Student insertAluno(Student student) throws SQLException {
+//        return dao.insertOrGetExistingStudent(student);
+//    }
     
     @POST
-    @Path("/addStudentFile")
+    @Path("/addArquivo")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.APPLICATION_JSON)
-    public StudentFile addStudentFile(
-            @FormDataParam("studentId") int studentId,
-            @FormDataParam("fileType") int fileType,
-            @FormDataParam("projectName") String projectName,
-            @FormDataParam("fileName") String fileName,
-            @FormDataParam("file") InputStream uploadedInputStream,
-            @FormDataParam("tddStage") String tddStage) throws SQLException {
+    public String addArquivo(
+            @FormDataParam("idAluno") int idAluno,
+            @FormDataParam("idTipoArquivo") int idTipoArquivo,
+            @FormDataParam("nomeProjeto") String nomeProjeto,
+            @FormDataParam("nomeArquivo") String nomeArquivo,
+            @FormDataParam("arquivo") File arquivoXml,
+            @FormDataParam("dsEstagioTdd") String dsEstagioTdd) throws SQLException {
 
-        StudentFile sf = new StudentFile();
-        sf.setStudentId(studentId);
-        sf.setFileIs(uploadedInputStream);
-        sf.setType(FileType.getFileType(fileType));
-        sf.setFileName(fileName);
-        sf.setProjectName(projectName);
-        sf.setStage(TDDStage.getStageByString(tddStage));
+        SaveFile saveFile = new SaveFile();
         
-        return dao.insertStudentFile(sf);
+        saveFile.setIdAlunoFile(idAluno);
+        saveFile.setIdTipoArquivoFile(idTipoArquivo);
+        saveFile.setNomeProjetoFile(nomeProjeto);
+        saveFile.setNomeArquivoFile(nomeArquivo);
+        saveFile.setArquivoFile(arquivoXml);
+        saveFile.setEstagioTddFile(dsEstagioTdd);
+        
+        dao.salvar(saveFile);
+        
+//        StudentFile sf = new StudentFile();
+//        sf.setStudentId(idAluno);
+//        sf.setFileIs(arquivoXml);
+//        sf.setType(FileType.getFileType(idTipoArquivo));
+//        sf.setFileName(nomeArquivo);
+//        sf.setProjectName(nomeProjeto);
+//        sf.setStage(TDDStage.getStageByString(dsEstagioTdd));
+        
+        return nomeArquivo;
     }
     
     @GET
     @Path("/allFiles")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<StudentFile> getAllFiles () throws SQLException, ParseException {
-        return dao.getAllFiles();
+    public List<ModCadAluno> getAllFiles () throws SQLException, ParseException {
+        ModCadAluno aluno = new ModCadAluno();
+        
+        return dao.consultaGeral(aluno);
     }
     
     @GET
     @Path("/hibernate")
     @Produces(MediaType.APPLICATION_JSON)
     public String startHibernate () {
-        
         SessionFactory sf = HibernateUtil.getSessionFactory();
         
-        return sf.getCurrentSession().toString();
+        return "Criação do Banco de Dados concluído!!!";
+    }
+    
+    @GET
+    @Path("/teste")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String teste() {
+        return "Teste OK";
+    }
+    
+    @GET
+    @Path("/arquivo")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String listArquivo() throws SQLException, FileNotFoundException {
+        List<SaveFile> arquivo = dao.consultaGeral(new SaveFile());
+        File file = null;
+        
+        for (SaveFile saveFile : arquivo) {
+            try {
+                byte[] bytes = saveFile.getArquivoXmlFile();
+                String nome = saveFile.getNomeArquivoFile();
+
+                file = new File("D:/test/" + nome);
+                FileOutputStream fos = new FileOutputStream(file);
+                fos.write(bytes);
+                fos.close();
+                
+                return nome;
+            } catch (Exception e) {
+            }
+        }
+        return "Erro";
     }
     
     @GET
@@ -90,12 +133,12 @@ public class TDDCriteriaService {
     public List<ModCadSemestre> insert() throws SQLException {
         
         ModCadSemestre semestre = new ModCadSemestre();
-        DaoGeneric daoSemestre = new DaoGeneric();
+        //DaoGeneric daoSemestre = new DaoGeneric();
         
         semestre.setDescSemestre("1º Semestre");
         
-        daoSemestre.salvar(semestre);
+        dao.salvar(semestre);
         
-        return daoSemestre.consultaGeral(semestre);
+        return dao.consultaGeral(semestre);
     }
 }

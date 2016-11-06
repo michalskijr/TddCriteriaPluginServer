@@ -3,9 +3,8 @@ package net.mjunior.model;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -18,7 +17,6 @@ import javax.persistence.Table;
 public class ModCadAluno implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idAluno;
     
     @Column(name = "nomeAluno", nullable = true)
@@ -31,8 +29,12 @@ public class ModCadAluno implements Serializable {
     private String situacao;
     
     @ManyToOne//(optional = true)
+    @JoinColumn(name = "idDisciplina")
     private ModCadDisciplina disciplina;
-
+    
+    @Column(name = "idSemestre", nullable = true)
+    private int idSemestre;
+    
     public int getIdAluno() {
         return idAluno;
     }
@@ -71,5 +73,13 @@ public class ModCadAluno implements Serializable {
 
     public void setDisciplina(ModCadDisciplina disciplina) {
         this.disciplina = disciplina;
+    }
+
+    public int getIdSemestre() {
+        return idSemestre;
+    }
+
+    public void setIdSemestre(int idSemestre) {
+        this.idSemestre = idSemestre;
     }
 }

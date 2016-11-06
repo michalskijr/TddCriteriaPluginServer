@@ -1,5 +1,7 @@
 package net.bhpachulski.tddcriteriaserver.dao;
 
+import java.io.File;
+import java.sql.SQLException;
 import java.util.List;
 import net.bhpachulski.tddcriteriaserver.util.HibernateUtil;
 import org.hibernate.Query;
@@ -8,10 +10,14 @@ import org.hibernate.SessionFactory;
 
 public class DaoGeneric<Object> {
     
-    SessionFactory sf = HibernateUtil.getSessionFactory();
+    private final SessionFactory sf = HibernateUtil.getSessionFactory();
     Session sessao = sf.openSession();
 
-    public DaoGeneric() {
+    public DaoGeneric() throws SQLException {
+
+    }
+    
+    public void init() throws SQLException {
         
     }
     
@@ -22,7 +28,7 @@ public class DaoGeneric<Object> {
         List<Object> objects = consulta.list();
         
         sessao.getTransaction().commit();
-        //sessao.close();
+        sessao.close();
         
         return objects;
     }

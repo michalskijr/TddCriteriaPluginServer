@@ -4,9 +4,12 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -30,10 +33,15 @@ public class ModCadDisciplina implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date ano;
     
-    @Column(name = "situacao", nullable = true)
-    private String situacao;
+//    @Column(name = "situacao", nullable = true)
+//    private String situacao;
     
-    @ManyToOne//(optional = true)
+    @Enumerated(EnumType.STRING)
+    @Column(name = "situacao")
+    private ModCadSituacao situacao;
+    
+    @ManyToOne
+    @JoinColumn(name = "idSemestre")
     private ModCadSemestre semestre;
 
     public int getIdDisciplina() {
@@ -60,14 +68,18 @@ public class ModCadDisciplina implements Serializable {
         this.ano = ano;
     }
 
-    public String getSituacao() {
+//    public String getSituacao() {
+//        return situacao;
+//    }
+//
+//    public void setSituacao(String situacao) {
+//        this.situacao = situacao;
+//    }
+
+    public ModCadSituacao getSituacao() {
         return situacao;
     }
-
-    public void setSituacao(String situacao) {
-        this.situacao = situacao;
-    }
-
+    
     public ModCadSemestre getSemestre() {
         return semestre;
     }

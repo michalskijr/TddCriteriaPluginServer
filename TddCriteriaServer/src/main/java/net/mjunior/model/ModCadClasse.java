@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -25,10 +26,16 @@ public class ModCadClasse implements Serializable {
     private String dsClasse;
     
     @ManyToOne//(optional = true)
+    @JoinColumn(name = "idProjeto")
     private ModCadProjeto projeto;
     
     @ManyToOne//(optional = true)
+    @JoinColumn(name = "idTipoClasse")
     private ModCadTipoClasse tipoClasse;
+    
+    @ManyToOne
+    @JoinColumn(name = "idArquivo")
+    private ModCadArquivo arquivo;
 
     public int getIdClasse() {
         return idClasse;
@@ -60,5 +67,13 @@ public class ModCadClasse implements Serializable {
 
     public void setTipoClasse(ModCadTipoClasse tipoClasse) {
         this.tipoClasse = tipoClasse;
+    }
+
+    public ModCadArquivo getArquivo() {
+        return arquivo;
+    }
+
+    public void setArquivo(ModCadArquivo arquivo) {
+        this.arquivo = arquivo;
     }
 }
