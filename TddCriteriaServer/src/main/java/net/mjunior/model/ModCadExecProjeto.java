@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -23,22 +25,21 @@ public class ModCadExecProjeto implements Serializable {
     @ManyToOne
     @JoinColumn(name = "idProjeto")
     private ModCadProjeto projeto;
-    //private int idProjeto;
     
     @Id
     @ManyToOne
     @JoinColumn(name = "idArquivo")
     private ModCadArquivo arquivo;
-    //private int idArquivo;
     
-    @Column
+    @Enumerated(EnumType.STRING)
+    @Column(name = "idEstagioTdd", nullable = false)
+    private ModCadEstagioTdd estagioTdd;
+    
+    @Column(name = "dataHora", nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataHora;
     
-    @ManyToOne
-    @JoinColumn(name = "idEstagioTdd")
-    private ModCadEstagioTdd estagioTdd;
-    
+    //Getters and Setters
     public ModCadProjeto getProjeto() {
         return projeto;
     }

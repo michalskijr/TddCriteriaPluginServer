@@ -3,9 +3,9 @@ package net.mjunior.model;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -19,28 +19,31 @@ public class ModCadAluno implements Serializable {
     @Id
     private int idAluno;
     
+    @Enumerated(EnumType.STRING)
+    @Column(name = "situacao", nullable = false)
+    private ModCadSituacao situacao;
+
     @Column(name = "nomeAluno", nullable = true)
     private String nomeAluno;
     
     @Column(name = "macAddress", nullable = true)
     private String macAddress;
     
-    @Column(name = "situacao", nullable = true)
-    private String situacao;
-    
-    @ManyToOne//(optional = true)
-    @JoinColumn(name = "idDisciplina")
-    private ModCadDisciplina disciplina;
-    
-    @Column(name = "idSemestre", nullable = true)
-    private int idSemestre;
-    
+    //Getter and Setter
     public int getIdAluno() {
         return idAluno;
     }
 
     public void setIdAluno(int idAluno) {
         this.idAluno = idAluno;
+    }
+
+    public ModCadSituacao getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(ModCadSituacao situacao) {
+        this.situacao = situacao;
     }
 
     public String getNomeAluno() {
@@ -57,29 +60,5 @@ public class ModCadAluno implements Serializable {
 
     public void setMacAddress(String macAddress) {
         this.macAddress = macAddress;
-    }
-
-    public String getSituacao() {
-        return situacao;
-    }
-
-    public void setSituacao(String situacao) {
-        this.situacao = situacao;
-    }
-
-    public ModCadDisciplina getDisciplina() {
-        return disciplina;
-    }
-
-    public void setDisciplina(ModCadDisciplina disciplina) {
-        this.disciplina = disciplina;
-    }
-
-    public int getIdSemestre() {
-        return idSemestre;
-    }
-
-    public void setIdSemestre(int idSemestre) {
-        this.idSemestre = idSemestre;
     }
 }

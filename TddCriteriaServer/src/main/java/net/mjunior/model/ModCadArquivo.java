@@ -3,12 +3,12 @@ package net.mjunior.model;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -23,17 +23,18 @@ public class ModCadArquivo implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idArquivo;
     
-    @Column(name = "nomeArquivo", nullable = true)
+    @Enumerated(EnumType.STRING)
+    @Column(name = "idTipoArquivo", nullable = false)
+    private ModCadTipoArquivo tipoArquivo;
+    
+    @Column(name = "nomeArquivo", nullable = false)
     private String nomeArquivo;
     
-    @Column
+    @Column(name = "arquivoXML", nullable = false)
     @Lob
     private byte[] arquivoXML;
     
-    @ManyToOne//(optional = true)
-    @JoinColumn(name = "idTipoArquivo")
-    private ModCadTipoArquivo tipoArquivo;
-    
+    //Getters and Setters
     public int getIdArquivo() {
         return idArquivo;
     }

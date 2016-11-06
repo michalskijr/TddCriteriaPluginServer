@@ -19,15 +19,11 @@
     <mapping class="net.mjunior.model.ModCadArquivo"/>
     <mapping class="net.mjunior.model.ModCadClasse"/>
     <mapping class="net.mjunior.model.ModCadDisciplina"/>
-    <mapping class="net.mjunior.model.ModCadEstagioTdd"/>
     <mapping class="net.mjunior.model.ModCadExecEstatistica"/>
     <mapping class="net.mjunior.model.ModCadExecProjeto"/>
     <mapping class="net.mjunior.model.ModCadMetodo"/>
     <mapping class="net.mjunior.model.ModCadProfessor"/>
     <mapping class="net.mjunior.model.ModCadProjeto"/>
-    <mapping class="net.mjunior.model.ModCadSemestre"/>
-    <mapping class="net.mjunior.model.ModCadTipoArquivo"/>
-    <mapping class="net.mjunior.model.ModCadTipoClasse"/>
     <mapping class="net.mjunior.model.ModCadTipoEstatistica"/>
     <mapping class="net.mjunior.model.SaveFile"/>
   </session-factory>

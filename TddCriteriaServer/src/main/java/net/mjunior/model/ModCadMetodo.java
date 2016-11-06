@@ -22,14 +22,15 @@ public class ModCadMetodo implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idMetodo;
     
-    @Column(name = "descricao", nullable = true)
-    private String dsMetodo;
-    
     @Id
-    @ManyToOne//(optional = true)
-    @JoinColumn(name = "idClasse")
+    @ManyToOne
+    @JoinColumn(name = "idClasse", nullable = false)
     private ModCadClasse classe;
     
+    @Column(name = "descricao", nullable = false)
+    private String dsMetodo;
+    
+    //Getters and Setters
     public int getIdMetodo() {
         return idMetodo;
     }

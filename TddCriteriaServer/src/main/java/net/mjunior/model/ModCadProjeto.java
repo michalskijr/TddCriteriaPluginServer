@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +25,19 @@ public class ModCadProjeto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idProjeto;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "situacao", nullable = false)
+    private ModCadSituacao situacao;
     
+    @ManyToOne
+    @JoinColumn(name = "idProfessor")
+    private ModCadProfessor professor;
+    
+    @ManyToOne
+    @JoinColumn(name = "idAluno", nullable = false)
+    private ModCadAluno aluno;
+
     @Column(name = "dataInicio", nullable = true)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataInicio;
@@ -31,17 +45,7 @@ public class ModCadProjeto implements Serializable {
     @Column(name = "nomeProjeto", nullable = true)
     private String nomeProjeto;
     
-    @Column(name = "situacao", nullable = true)
-    private String situacao;
-    
-    @ManyToOne//(optional = true)
-    @JoinColumn(name = "idProfessor")
-    private ModCadProfessor professor;
-    
-    @ManyToOne//(optional = true)
-    @JoinColumn(name = "idAluno")
-    private ModCadAluno aluno;
-    
+    //Getters and Setters
     public int getIdProjeto() {
         return idProjeto;
     }
@@ -50,27 +54,11 @@ public class ModCadProjeto implements Serializable {
         this.idProjeto = idProjeto;
     }
 
-    public Date getDataInicio() {
-        return dataInicio;
-    }
-
-    public void setDataInicio(Date dataInicio) {
-        this.dataInicio = dataInicio;
-    }
-
-    public String getNomeProjeto() {
-        return nomeProjeto;
-    }
-
-    public void setNomeProjeto(String nomeProjeto) {
-        this.nomeProjeto = nomeProjeto;
-    }
-
-    public String getSituacao() {
+    public ModCadSituacao getSituacao() {
         return situacao;
     }
 
-    public void setSituacao(String situacao) {
+    public void setSituacao(ModCadSituacao situacao) {
         this.situacao = situacao;
     }
 
@@ -88,5 +76,21 @@ public class ModCadProjeto implements Serializable {
 
     public void setAluno(ModCadAluno aluno) {
         this.aluno = aluno;
+    }
+
+    public Date getDataInicio() {
+        return dataInicio;
+    }
+
+    public void setDataInicio(Date dataInicio) {
+        this.dataInicio = dataInicio;
+    }
+
+    public String getNomeProjeto() {
+        return nomeProjeto;
+    }
+
+    public void setNomeProjeto(String nomeProjeto) {
+        this.nomeProjeto = nomeProjeto;
     }
 }

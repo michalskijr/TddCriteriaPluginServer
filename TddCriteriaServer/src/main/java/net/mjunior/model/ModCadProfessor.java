@@ -3,6 +3,8 @@ package net.mjunior.model;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,6 +22,10 @@ public class ModCadProfessor implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idProfessor;
     
+    @Enumerated(EnumType.STRING)
+    @Column(name = "situacao", nullable = false)
+    private ModCadSituacao situacao;
+    
     @Column(name = "nomeProfessor", nullable = true)
     private String nomeProfessor;
     
@@ -32,6 +38,7 @@ public class ModCadProfessor implements Serializable {
     @Column(name = "email", nullable = true)
     private String email;
 
+    //Getters and Setters
     public int getIdProfessor() {
         return idProfessor;
     }
@@ -40,6 +47,14 @@ public class ModCadProfessor implements Serializable {
         this.idProfessor = idProfessor;
     }
 
+    public ModCadSituacao getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(ModCadSituacao situacao) {
+        this.situacao = situacao;
+    }
+    
     public String getNomeProfessor() {
         return nomeProfessor;
     }

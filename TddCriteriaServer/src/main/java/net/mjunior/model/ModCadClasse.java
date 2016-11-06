@@ -3,6 +3,8 @@ package net.mjunior.model;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,21 +24,22 @@ public class ModCadClasse implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idClasse;
     
-    @Column(name = "descricao")
-    private String dsClasse;
-    
-    @ManyToOne//(optional = true)
-    @JoinColumn(name = "idProjeto")
-    private ModCadProjeto projeto;
-    
-    @ManyToOne//(optional = true)
-    @JoinColumn(name = "idTipoClasse")
-    private ModCadTipoClasse tipoClasse;
+    @ManyToOne
+    @JoinColumn(name = "idArquivo", nullable = false)
+    private ModCadArquivo arquivo;
     
     @ManyToOne
-    @JoinColumn(name = "idArquivo")
-    private ModCadArquivo arquivo;
+    @JoinColumn(name = "idProjeto", nullable = false)
+    private ModCadProjeto projeto;
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name = "idTipoClasse", nullable = false)
+    private ModCadTipoClasse tipoClasse;
+    
+    @Column(name = "descricao", nullable = false)
+    private String dsClasse;
 
+    //Getters and Setters
     public int getIdClasse() {
         return idClasse;
     }

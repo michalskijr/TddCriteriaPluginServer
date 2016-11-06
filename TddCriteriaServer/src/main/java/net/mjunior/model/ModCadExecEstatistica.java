@@ -27,15 +27,16 @@ public class ModCadExecEstatistica implements Serializable {
     @JoinColumn(name = "idTipoEstatistica")
     private ModCadTipoEstatistica tipoEstatistica;
     
-    @Column(name = "missed")
+    @Column(name = "missed", nullable = true)
     private int missed;
     
-    @Column(name = "covered")
+    @Column(name = "covered", nullable = true)
     private int covered;
     
-    @Column(name = "failed")
+    @Column(name = "failed", nullable = true)
     private Boolean failed;
 
+    //Getters and Setters
     public ModCadArquivo getArquivo() {
         return arquivo;
     }

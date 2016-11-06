@@ -1,41 +1,21 @@
 package net.mjunior.model;
 
-import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 /**
  *
  * @author mjunior
  */
-@Entity
-@Table(name = "EstagioTDD")
-public class ModCadEstagioTdd implements Serializable {
+public enum ModCadEstagioTdd {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idEstagioTdd;
+    RED(0), GREEN(1), REFACTOR(2);
     
-    @Column(name = "descricao", nullable = true)
-    private String dsEstagioTdd;
+    private final int idEstagioTdd;
 
-    public int getIdEstagioTdd() {
-        return idEstagioTdd;
-    }
-
-    public void setIdEstagioTdd(int idEstagioTdd) {
+    private ModCadEstagioTdd(int idEstagioTdd) {
         this.idEstagioTdd = idEstagioTdd;
     }
-
-    public String getDsEstagioTdd() {
-        return dsEstagioTdd;
-    }
-
-    public void setDsEstagioTdd(String dsEstagioTdd) {
-        this.dsEstagioTdd = dsEstagioTdd;
+    
+    //Getters and Setters
+    public int getIdEstagioTdd() {
+        return idEstagioTdd;
     }
 }

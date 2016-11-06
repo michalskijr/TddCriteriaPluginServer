@@ -14,6 +14,7 @@ public enum ModCadSituacao {
         this.idSituacao = idSituacao;
     }
 
+    //Getters and Setters
     public int getIdSituacao() {
         return idSituacao;
     }

@@ -12,12 +12,9 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import net.bhpachulski.tddcriteriaserver.dao.DaoArquivo;
 import net.bhpachulski.tddcriteriaserver.dao.DaoGeneric;
 import net.bhpachulski.tddcriteriaserver.util.HibernateUtil;
 import net.mjunior.model.ModCadAluno;
-import net.mjunior.model.ModCadArquivo;
-import net.mjunior.model.ModCadSemestre;
 import net.mjunior.model.SaveFile;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.hibernate.SessionFactory;
@@ -67,14 +64,6 @@ public class TDDCriteriaService {
         
         dao.salvar(saveFile);
         
-//        StudentFile sf = new StudentFile();
-//        sf.setStudentId(idAluno);
-//        sf.setFileIs(arquivoXml);
-//        sf.setType(FileType.getFileType(idTipoArquivo));
-//        sf.setFileName(nomeArquivo);
-//        sf.setProjectName(nomeProjeto);
-//        sf.setStage(TDDStage.getStageByString(dsEstagioTdd));
-        
         return nomeArquivo;
     }
     
@@ -108,7 +97,7 @@ public class TDDCriteriaService {
     @Produces(MediaType.APPLICATION_JSON)
     public String listArquivo() throws SQLException, FileNotFoundException {
         List<SaveFile> arquivo = dao.consultaGeral(new SaveFile());
-        File file = null;
+        File file;
         
         for (SaveFile saveFile : arquivo) {
             try {
@@ -125,20 +114,5 @@ public class TDDCriteriaService {
             }
         }
         return "Erro";
-    }
-    
-    @GET
-    @Path("/insert")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<ModCadSemestre> insert() throws SQLException {
-        
-        ModCadSemestre semestre = new ModCadSemestre();
-        //DaoGeneric daoSemestre = new DaoGeneric();
-        
-        semestre.setDescSemestre("1º Semestre");
-        
-        dao.salvar(semestre);
-        
-        return dao.consultaGeral(semestre);
     }
 }
