@@ -1,5 +1,6 @@
 package net.bhpachulski.tddcriteria.model.Eclemma;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
@@ -16,13 +17,13 @@ public class Report {
     @XmlElement()
     private String name;
     
-    @XmlElement()
+    @JsonProperty("group")
     private Group group;
     
-    @XmlElement()
+    @JsonProperty("sessioninfo")
     private SessionInfo sessioninfo;
     
-    @XmlElement(name = "counter")
+    @JsonProperty("counter")
     private List<Counter> counter = new ArrayList<>();
 
     public String getName() {

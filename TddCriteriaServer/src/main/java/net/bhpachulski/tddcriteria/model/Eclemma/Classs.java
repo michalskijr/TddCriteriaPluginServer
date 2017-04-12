@@ -1,7 +1,7 @@
 package net.bhpachulski.tddcriteria.model.Eclemma;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,16 +9,16 @@ import java.util.List;
  *
  * @author bhpachulski
  */
-@XmlRootElement(name = "class")
+@JacksonXmlRootElement(localName = "class")
 public class Classs {
 
-    @XmlElement
+    @JacksonXmlProperty(localName = "name")
     private String name;
+    
+    @JacksonXmlProperty(localName = "method")
+    private List<Methodd> methodd = new ArrayList<>();
 
-    @XmlElement(name = "method")
-    private Methodd methodd;
-
-    @XmlElement(name = "counter")
+    @JacksonXmlProperty(localName = "counter")
     private List<Counter> counter = new ArrayList<>();
 
     public String getName() {
@@ -29,11 +29,11 @@ public class Classs {
         this.name = name;
     }
 
-    public Methodd getMethodd() {
+    public List<Methodd> getMethodd() {
         return methodd;
     }
 
-    public void setMethodd(Methodd methodd) {
+    public void setMethodd(List<Methodd> methodd) {
         this.methodd = methodd;
     }
 
@@ -44,5 +44,4 @@ public class Classs {
     public void setCounter(List<Counter> counter) {
         this.counter = counter;
     }
-
 }

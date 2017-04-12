@@ -1,5 +1,7 @@
 package net.bhpachulski.tddcriteriaserver.util;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
 
@@ -21,5 +23,15 @@ public class HibernateUtil {
     
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
+    }
+    
+    public static Session getSession() throws HibernateException {
+        return sessionFactory.openSession();
+    }
+    
+    public void close() {
+        if(getSession() != null && getSession().isOpen()) {
+            getSession().close();
+        }
     }
 }

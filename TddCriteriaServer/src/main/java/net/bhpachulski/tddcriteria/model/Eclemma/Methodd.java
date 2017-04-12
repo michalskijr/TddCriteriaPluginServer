@@ -1,5 +1,7 @@
 package net.bhpachulski.tddcriteria.model.Eclemma;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
@@ -10,19 +12,19 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author bhpachulski
  */
 
-@XmlRootElement(name = "method")
+@XmlRootElement
 public class Methodd {
     
     @XmlElement()
     private String name;
     
-    @XmlElement()
+    @XmlElement
     private String desc;
     
     @XmlElement()
     private int line;
     
-    @XmlElement(name = "counter")
+    @JsonProperty("counter")
     private List<Counter> counter = new ArrayList<>();
 
     public String getName() {
@@ -56,5 +58,4 @@ public class Methodd {
     public void setCounter(List<Counter> counter) {
         this.counter = counter;
     }
-    
 }

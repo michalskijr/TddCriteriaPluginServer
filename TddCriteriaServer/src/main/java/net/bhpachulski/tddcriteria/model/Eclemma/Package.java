@@ -1,7 +1,13 @@
 package net.bhpachulski.tddcriteria.model.Eclemma;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -10,19 +16,19 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author bhpachulski
  */
 
-@XmlRootElement
+@JsonRootName("package")
 public class Package {
     
-    @XmlElement()
+    @JsonProperty(value = "name")
     private String name;
     
-    @XmlElement(name = "class")
-    private List<Classs> classs = new ArrayList<>();
+    @JsonProperty(value = "class")
+    private List<Classs> classs; 
     
-    @XmlElement()
+    @JsonProperty("sourcefile")
     private SourceFile sourcefile;
     
-    @XmlElement(name = "counter")
+    @JsonProperty("counter")
     private List<Counter> counter = new ArrayList<>();
 
     public String getName() {

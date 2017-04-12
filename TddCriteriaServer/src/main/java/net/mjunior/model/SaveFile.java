@@ -42,6 +42,9 @@ public class SaveFile implements Serializable {
     
     @Column(name = "estagioTdd", nullable = false)
     private String estagioTddFile;
+    
+    @Column(name = "realizadoLeitura", nullable = false)
+    private Boolean realizadoLeitura;
 
     public int getIdFile() {
         return idFile;
@@ -116,5 +119,13 @@ public class SaveFile implements Serializable {
         } catch (Exception e) {
             this.arquivoXmlFile = null;
         }
+    }
+
+    public Boolean getRealizadoLeitura() {
+        return realizadoLeitura;
+    }
+
+    public void setRealizadoLeitura(Boolean realizadoLeitura) {
+        this.realizadoLeitura = realizadoLeitura;
     }
 }
