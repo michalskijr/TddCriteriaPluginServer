@@ -22,7 +22,14 @@ public class ModCadMetodo implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idMetodo;
     
-    @Id
+    @ManyToOne
+    @JoinColumn(name = "idExecucaoProjeto", nullable = false)
+    private ModCadExecProjeto execProjeto;
+    
+    @ManyToOne
+    @JoinColumn(name = "idTestCases", nullable = true)
+    private ModCadTestCases testCases;
+    
     @ManyToOne
     @JoinColumn(name = "idClasse", nullable = false)
     private ModCadClasse classe;
@@ -39,6 +46,14 @@ public class ModCadMetodo implements Serializable {
         this.idMetodo = idMetodo;
     }
 
+    public ModCadExecProjeto getExecProjeto() {
+        return execProjeto;
+    }
+
+    public void setExecProjeto(ModCadExecProjeto execProjeto) {
+        this.execProjeto = execProjeto;
+    }
+
     public String getDsMetodo() {
         return dsMetodo;
     }
@@ -53,5 +68,13 @@ public class ModCadMetodo implements Serializable {
 
     public void setClasse(ModCadClasse classe) {
         this.classe = classe;
+    }
+
+    public ModCadTestCases getTestCases() {
+        return testCases;
+    }
+
+    public void setTestCases(ModCadTestCases testCases) {
+        this.testCases = testCases;
     }
 }

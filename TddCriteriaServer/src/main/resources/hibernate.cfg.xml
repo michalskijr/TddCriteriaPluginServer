@@ -18,13 +18,15 @@
     <mapping class="net.mjunior.model.ModCadAluno"/>
     <mapping class="net.mjunior.model.ModCadArquivo"/>
     <mapping class="net.mjunior.model.ModCadClasse"/>
+    <mapping class="net.mjunior.model.ModCadClasseCounter"/>
     <mapping class="net.mjunior.model.ModCadDisciplina"/>
-    <mapping class="net.mjunior.model.ModCadExecEstatistica"/>
     <mapping class="net.mjunior.model.ModCadExecProjeto"/>
     <mapping class="net.mjunior.model.ModCadMetodo"/>
+    <mapping class="net.mjunior.model.ModCadMetodoCounter"/>
     <mapping class="net.mjunior.model.ModCadProfessor"/>
     <mapping class="net.mjunior.model.ModCadProjeto"/>
-    <mapping class="net.mjunior.model.ModCadTipoEstatistica"/>
+    <mapping class="net.mjunior.model.ModCadTestCases"/>
+    <!--<mapping class="net.mjunior.model.ModCadTypeCounter"/>-->
     <mapping class="net.mjunior.model.SaveFile"/>
   </session-factory>
 </hibernate-configuration>

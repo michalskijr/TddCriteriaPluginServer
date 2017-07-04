@@ -1,7 +1,7 @@
 package net.bhpachulski.tddcriteriaserver.model;
 
 import java.util.Objects;
-import net.bhpachulski.tddcriteria.model.junit.FailureTrace;
+import net.bhpachulski.tddcriteria.model.junit.FailDetail;
 
 public class TestCase {
 
@@ -11,7 +11,7 @@ public class TestCase {
 
     private boolean failed = false;
 
-    private FailureTrace failDetail;
+    private FailDetail failDetail;
 
     public String getPackageName() {
         return packageName;
@@ -45,11 +45,11 @@ public class TestCase {
         this.failed = failed;
     }
 
-    public FailureTrace getFailDetail() {
+    public FailDetail getFailDetail() {
         return failDetail;
     }
 
-    public void setFailDetail(FailureTrace failDetail) {
+    public void setFailDetail(FailDetail failDetail) {
         this.failDetail = failDetail;
     }
 

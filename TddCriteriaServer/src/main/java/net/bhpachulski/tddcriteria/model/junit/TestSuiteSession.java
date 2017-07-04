@@ -1,40 +1,40 @@
 package net.bhpachulski.tddcriteria.model.junit;
 
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class TestSuiteSession implements Serializable {
+public class TestSuiteSession {
 
     @XmlElement()
-    private Date launched;
+    private String launched;
 
     @XmlElement()
-    private Date finished;
+    private String finished;
 
     @XmlElement()
     private String testRunName;
 
-    private List<TestCase> testCases = new ArrayList<TestCase>();
+    @JsonProperty("testCases")
+    private List<TestCase> testCases = new ArrayList<>();
 
-    public Date getLaunched() {
+    public String getLaunched() {
         return launched;
     }
 
-    public void setLaunched(Date launched) {
+    public void setLaunched(String launched) {
         this.launched = launched;
     }
 
-    public Date getFinished() {
+    public String getFinished() {
         return finished;
     }
 
-    public void setFinished(Date finished) {
+    public void setFinished(String finished) {
         this.finished = finished;
     }
 
@@ -53,8 +53,4 @@ public class TestSuiteSession implements Serializable {
     public void setTestCases(List<TestCase> testCases) {
         this.testCases = testCases;
     }
-
-//	public void setTestCases(TestCase testCase) {
-//		this.testCases.add(testCase);
-//	}
 }

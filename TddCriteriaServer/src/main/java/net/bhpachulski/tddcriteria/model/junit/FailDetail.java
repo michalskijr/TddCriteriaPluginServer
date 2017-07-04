@@ -1,13 +1,23 @@
 package net.bhpachulski.tddcriteria.model.junit;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author bhpachulski
  */
-public class FailureTrace {
+
+@XmlRootElement
+public class FailDetail {
     
+    @XmlElement()
     private String expected;
+    
+    @XmlElement()
     private String actual;
+    
+    @XmlElement()
     private String trace;
 
     public String getExpected() {
@@ -33,7 +43,4 @@ public class FailureTrace {
     public void setTrace(String trace) {
         this.trace = trace;
     }
-    
-    
-    
 }

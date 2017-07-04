@@ -1,17 +1,26 @@
 package net.bhpachulski.tddcriteria.model.junit;
 
 import java.util.Objects;
-import net.bhpachulski.tddcriteria.model.junit.FailureTrace;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 public class TestCase {
 
+    @XmlElement()
     private String className;
+    
+    @XmlElement()
     private String methodName;
+    
+    @XmlElement()
     private String packageName;
 
-    private boolean failed = false;
+    @XmlElement()
+    private boolean failed;
 
-    private FailureTrace failDetail;
+    @XmlElement()
+    private FailDetail failDetail;
 
     public String getPackageName() {
         return packageName;
@@ -45,11 +54,11 @@ public class TestCase {
         this.failed = failed;
     }
 
-    public FailureTrace getFailDetail() {
+    public FailDetail getFailDetail() {
         return failDetail;
     }
 
-    public void setFailDetail(FailureTrace failDetail) {
+    public void setFailDetail(FailDetail failDetail) {
         this.failDetail = failDetail;
     }
 
@@ -73,12 +82,6 @@ public class TestCase {
         if (!Objects.equals(this.methodName, other.methodName)) {
             return false;
         }
-        if (!Objects.equals(this.packageName, other.packageName)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.packageName, other.packageName);
     }
-    
-    
-
 }

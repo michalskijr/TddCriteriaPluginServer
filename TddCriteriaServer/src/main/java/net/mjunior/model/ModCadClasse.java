@@ -25,10 +25,6 @@ public class ModCadClasse implements Serializable {
     private int idClasse;
     
     @ManyToOne
-    @JoinColumn(name = "idArquivo", nullable = false)
-    private ModCadArquivo arquivo;
-    
-    @ManyToOne
     @JoinColumn(name = "idProjeto", nullable = false)
     private ModCadProjeto projeto;
     
@@ -70,13 +66,5 @@ public class ModCadClasse implements Serializable {
 
     public void setTipoClasse(ModCadTipoClasse tipoClasse) {
         this.tipoClasse = tipoClasse;
-    }
-
-    public ModCadArquivo getArquivo() {
-        return arquivo;
-    }
-
-    public void setArquivo(ModCadArquivo arquivo) {
-        this.arquivo = arquivo;
     }
 }

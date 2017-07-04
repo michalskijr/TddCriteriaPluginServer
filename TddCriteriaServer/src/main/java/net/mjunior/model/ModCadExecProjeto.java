@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,38 +24,36 @@ import javax.persistence.Temporal;
 public class ModCadExecProjeto implements Serializable {
     
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idExecucaoProjeto;
+    
     @ManyToOne
     @JoinColumn(name = "idProjeto")
     private ModCadProjeto projeto;
-    
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "idArquivo")
-    private ModCadArquivo arquivo;
     
     @Enumerated(EnumType.STRING)
     @Column(name = "idEstagioTdd", nullable = false)
     private ModCadEstagioTdd estagioTdd;
     
-    @Column(name = "dataHora", nullable = false)
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Column(name = "dataHora", nullable = false, columnDefinition = "DATETIME")
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date dataHora;
     
     //Getters and Setters
+    public int getIdExecucaoProjeto() {
+        return idExecucaoProjeto;
+    }
+
+    public void setIdExecucaoProjeto(int idExecucaoProjeto) {
+        this.idExecucaoProjeto = idExecucaoProjeto;
+    }
+
     public ModCadProjeto getProjeto() {
         return projeto;
     }
     
     public void setProjeto(ModCadProjeto projeto) {
         this.projeto = projeto;
-    }
-    
-    public ModCadArquivo getArquivo() {
-        return arquivo;
-    }
-    
-    public void setArquivo(ModCadArquivo arquivo) {
-        this.arquivo = arquivo;
     }
     
     public Date getDataHora() {

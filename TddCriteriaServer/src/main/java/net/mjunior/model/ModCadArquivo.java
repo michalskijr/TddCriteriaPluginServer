@@ -8,7 +8,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -22,6 +24,11 @@ public class ModCadArquivo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idArquivo;
+    
+    //@Id
+    @ManyToOne
+    @JoinColumn(name = "idExecucaoProjeto")
+    private ModCadExecProjeto execucaoProjeto;
     
     @Enumerated(EnumType.STRING)
     @Column(name = "idTipoArquivo", nullable = false)
@@ -65,5 +72,13 @@ public class ModCadArquivo implements Serializable {
 
     public void setTipoArquivo(ModCadTipoArquivo tipoArquivo) {
         this.tipoArquivo = tipoArquivo;
+    }
+
+    public ModCadExecProjeto getExecucaoProjeto() {
+        return execucaoProjeto;
+    }
+
+    public void setExecucaoProjeto(ModCadExecProjeto execucaoProjeto) {
+        this.execucaoProjeto = execucaoProjeto;
     }
 }

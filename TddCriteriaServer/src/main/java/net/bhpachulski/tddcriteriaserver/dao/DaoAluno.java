@@ -16,8 +16,8 @@ public class DaoAluno extends HibernateUtil {
     public void inserirAluno(ModCadAluno modAluno) throws SQLException {
         aluno = new ModCadAluno();
         dao = new DaoGeneric<>();
-        System.out.println("Id: " + modAluno.getIdAluno());
-        aluno = (ModCadAluno) dao.consultaPorId(modAluno, modAluno.getIdAluno());
+        aluno = dao.consultaUmParametro(
+                modAluno, "idAluno", modAluno.getIdAluno());
 
         if(aluno == null)
             dao.salvar(modAluno);
